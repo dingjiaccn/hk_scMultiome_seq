@@ -1,0 +1,40 @@
+section describing how to **format and use the samplesheet**, including an example:
+
+---
+
+### Samplesheet Format and Usage
+
+The samplesheet is a required input that specifies how sample and Tn5 barcodes are mapped to individual sample identifiers for demultiplexing single-cell libraries. 
+Each row in the samplesheet defines a sample and the corresponding subset of barcodes used during library preparation. 
+The samplesheet must be a tab-delimited text file with the following two columns:
+
+* `sample_id`: A unique identifier for the sample.
+* `ranges`: A barcode specification string consisting of two parts separated by a colon:
+
+  * The first part corresponds to the **sample barcode index range** from the sample barcode whitelist.
+  * The second part corresponds to the **Tn5 barcode index range** from the Tn5 barcode whitelist.
+
+Both index ranges are **1-based** and support:
+
+* Comma-separated values (e.g., `1,3,5`)
+* Ranges using hyphens (e.g., `2-4`)
+* Mixed formats (e.g., `1,4-6`)
+
+These index values refer to positions in the corresponding barcode whitelist files, and will be adjusted internally to 0-based indexing to match Python conventions.
+
+#### Example Samplesheet
+
+```
+sample_id	ranges
+Sample_A	1-4:1-96
+Sample_B	5,6-10:97-192
+```
+
+In this example:
+
+* `Sample_A` uses sample barcodes at positions 1 through 4 and all 96 Tn5 barcodes (1–96).
+* `Sample_B` uses sample barcodes at positions 5 and 6 through 10, and Tn5 barcodes at positions 97 through 192.
+
+This format allows flexible specification of barcode combinations, enabling pooled demultiplexing across multiple samples in a single run.
+
+---

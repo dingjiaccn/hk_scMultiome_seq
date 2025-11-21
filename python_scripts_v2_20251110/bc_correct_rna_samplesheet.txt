@@ -1,0 +1,2 @@
+sample_id	ranges
+RNA	2:9-16

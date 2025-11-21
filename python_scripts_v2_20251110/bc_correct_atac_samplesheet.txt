@@ -1,0 +1,2 @@
+sample_id	ranges
+ATAC	1:1-8
